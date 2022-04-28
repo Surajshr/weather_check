@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import '../utilities/constants.dart';
 
 class CityScreen extends StatefulWidget {
@@ -9,11 +8,13 @@ class CityScreen extends StatefulWidget {
 }
 
 class _CityScreenState extends State<CityScreen> {
+
+   var cityName;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/city_background.jpg'),
             fit: BoxFit.cover,
@@ -26,8 +27,10 @@ class _CityScreenState extends State<CityScreen> {
               Align(
                 alignment: Alignment.topLeft,
                 child: FlatButton(
-                  onPressed: () {},
-                  child: Icon(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Icon(
                     Icons.arrow_back_ios,
                     size: 50.0,
                   ),
@@ -35,11 +38,21 @@ class _CityScreenState extends State<CityScreen> {
               ),
               Container(
                 padding: EdgeInsets.all(20.0),
-                child: null,
+                child:  TextField(
+                  style: const TextStyle(
+                    color: Colors.black,
+                  ),
+                  decoration:kTExtFieldInputDecoration,
+                  onChanged: (value){
+                  cityName=value;
+                  },
+                ),
               ),
               FlatButton(
-                onPressed: () {},
-                child: Text(
+                onPressed: () {
+                  Navigator.pop(context,cityName);
+                },
+                child: const Text(
                   'Get Weather',
                   style: kButtonTextStyle,
                 ),
